@@ -79,9 +79,7 @@ def placeFallingPiece():
     for row in range(rows):
         for col in range(cols):
             if(canvas.data.fallingPiece[row][col] == True):
-                canvas.data.board[row+canvas.data.fallingPieceRow] \
-                                 [col+canvas.data.fallingPieceCol] = \
-                                 canvas.data.fallingPieceColor
+                canvas.data.board[row+canvas.data.fallingPieceRow][col+canvas.data.fallingPieceCol] = canvas.data.fallingPieceColor
     
 def fallingPieceIsLegal(pieceRow, pieceCol):
     # Tests whether pieces falls off border 
@@ -106,8 +104,7 @@ def newFallingPiece():
     canvas.data.fallingPiece = canvas.data.tetrisPieces[index]
     canvas.data.fallingPieceColor = canvas.data.tetrisPieceColors[index]
     canvas.data.fallingPieceRow = 0
-    canvas.data.fallingPieceCol = canvas.data.cols/2 \
-                                  - len(canvas.data.tetrisPieces[index][0])/2 
+    canvas.data.fallingPieceCol = canvas.data.cols/2 - len(canvas.data.tetrisPieces[index][0])/2 
     
 ################Draw
 
@@ -295,7 +292,7 @@ def run(rows, cols):
     # set up events
     root.bind("<Button-1>", mousePressed)
     root.bind("<Key>", keyPressed)
-    timerFired()
+    #timerFired()
     # and launch the app
     root.mainloop()  # This call BLOCKS (so your program waits until you close the window!)
 
