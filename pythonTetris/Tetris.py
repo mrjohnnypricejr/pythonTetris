@@ -292,7 +292,7 @@ def run(rows, cols):
     # set up events
     root.bind("<Button-1>", mousePressed)
     root.bind("<Key>", keyPressed)
-    #timerFired()
+    timerFired()
     # and launch the app
     root.mainloop()  # This call BLOCKS (so your program waits until you close the window!)
 
