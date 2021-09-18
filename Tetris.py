@@ -206,7 +206,7 @@ def removeFullRows():
         for col in range(cols):
             tetrisBoard[row][col] = canvas.data.emptyColors
                   
-    canvas.data.score += score * score
+    canvas.data.score += score * score * 100
 
 def make2dList(rows, cols):
     tetrisBoard = []
@@ -224,12 +224,13 @@ def timerFired():
             if fallingPieceIsLegal(canvas.data.fallingPieceRow,
                                    canvas.data.fallingPieceCol) == False:
                     canvas.data.isGameOver = True
-    if(canvas.data.score < 80):
-        delay = 600 - 5 * canvas.data.score
-    elif (canvas.data.score < 180):
-        delay = 280 - 1 * canvas.data.score
+    if(canvas.data.score < 8000):
+        delay = 600 - 5 * (canvas.data.score // 100)
+    elif (canvas.data.score < 18000):
+        delay = 280 - 1 * (canvas.data.score // 100)
     else:
         delay = 100
+    canvas.data.score += 1
     canvas.after(delay, timerFired) # pause, then call timerFired again
 
 def init():
