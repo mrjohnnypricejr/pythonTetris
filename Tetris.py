@@ -224,19 +224,20 @@ def timerFired():
             if fallingPieceIsLegal(canvas.data.fallingPieceRow,
                                    canvas.data.fallingPieceCol) == False:
                     canvas.data.isGameOver = True
+        canvas.data.score += 1
     if(canvas.data.score < 8000):
         delay = 600 - 5 * (canvas.data.score // 100)
     elif (canvas.data.score < 18000):
         delay = 280 - 1 * (canvas.data.score // 100)
     else:
         delay = 100
-    canvas.data.score += 1
+    
     canvas.after(delay, timerFired) # pause, then call timerFired again
 
 def init():
     canvas.data.board = make2dList(canvas.data.rows,canvas.data.cols)
     canvas.data.score = 0
-    canvas.data.paused=False
+    canvas.data.paused = False
     #Seven "standard" pieces (tetrominoes)
     iPiece = [ [ True,  True,  True,  True] ]
     
@@ -270,6 +271,7 @@ def run(rows, cols):
     # create the root and the canvas
     global canvas
     root = Tk()
+    root.title("P Y T H O N    T E T R I S")
     margin = 25
     cellSize = 35
     canvasWidth = 2*margin + cols*cellSize
@@ -297,4 +299,4 @@ def run(rows, cols):
     # and launch the app
     root.mainloop()  # This call BLOCKS (so your program waits until you close the window!)
 
-run(15,10)
+run(18,10)
