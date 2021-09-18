@@ -32,7 +32,7 @@ def rotateFallingPiece():
     canvas.data.currentCol = len(canvas.data.fallingPiece[0])
     currentFallingPiece = canvas.data.fallingPiece
     (oldRow,oldCol) = fallingPieceCenter()
-    # Switch Rows and Cols into into temporary rows and cols of pieces position
+    # Switch Rows and Cols into temporary rows and cols of pieces position
     canvas.data.currentRow = len(canvas.data.fallingPiece[0]) 
     canvas.data.currentCol = len(canvas.data.fallingPiece)
     (newRow,newCol) = fallingPieceCenter()
@@ -56,8 +56,8 @@ def rotateFallingPiece():
 
 ############Falling Piece
 def fallingPieceCenter():
-    (row, col) = (canvas.data.fallingPieceRow + canvas.data.currentRow/2,
-                  canvas.data.fallingPieceCol + canvas.data.currentCol/2)
+    (row, col) = (canvas.data.fallingPieceRow + canvas.data.currentRow,
+                  canvas.data.fallingPieceCol + canvas.data.currentCol)
     return (row, col)
 
 def moveFallingPiece(drow, dcol):
@@ -79,7 +79,7 @@ def placeFallingPiece():
     for row in range(rows):
         for col in range(cols):
             if(canvas.data.fallingPiece[row][col] == True):
-                canvas.data.board[row+canvas.data.fallingPieceRow][col+canvas.data.fallingPieceCol] = canvas.data.fallingPieceColor
+                canvas.data.board[int(row+canvas.data.fallingPieceRow)][int(col+canvas.data.fallingPieceCol)] = canvas.data.fallingPieceColor
     
 def fallingPieceIsLegal(pieceRow, pieceCol):
     # Tests whether pieces falls off border 
@@ -103,8 +103,8 @@ def newFallingPiece():
     index = random.randint(0,6)
     canvas.data.fallingPiece = canvas.data.tetrisPieces[index]
     canvas.data.fallingPieceColor = canvas.data.tetrisPieceColors[index]
-    canvas.data.fallingPieceRow = 0
-    canvas.data.fallingPieceCol = canvas.data.cols/2 - len(canvas.data.tetrisPieces[index][0])/2 
+    canvas.data.fallingPieceRow = int(0)
+    canvas.data.fallingPieceCol = int(canvas.data.cols/2 - len(canvas.data.tetrisPieces[index][0])/2) 
     
 ################Draw
 
@@ -162,7 +162,7 @@ def drawCell(row, col, cellColor):
     right = left + cellSize
     top = margin + row * cellSize
     bottom = top + cellSize
-    gridMargin = 0
+    gridMargin = 1
     canvas.create_rectangle(left-gridMargin, top-gridMargin,
                             right+gridMargin, bottom+gridMargin, fill="white")
     canvas.create_rectangle(left+gridMargin, top+gridMargin,
